@@ -30,7 +30,7 @@ import warnings
 warnings.filterwarnings("ignore")
 
 
-df = pd.read_csv("/content/train.csv")
+df = pd.read_csv("train.csv")
 df
 df.head()
 df.shape
@@ -138,3 +138,14 @@ print(classification_report(y_test, y_pred))
 print("Confusion Matrix:\n")
 print(confusion_matrix(y_test, y_pred))
 
+
+import pickle
+
+X = df.drop("price_range", axis=1)
+y = df["price_range"]
+
+model = RandomForestClassifier()
+model.fit(X, y)
+
+with open("model.pkl", "wb") as f:
+    pickle.dump(model, f)

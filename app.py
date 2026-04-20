@@ -1,5 +1,9 @@
 import numpy as np
 import gradio as gr
+import pickle
+
+with open("model.pkl", "rb") as f:
+    model = pickle.load(f)
 
 def predict_price(battery_power, blue, clock_speed, dual_sim, fc, four_g,
                   int_memory, m_dep, mobile_wt, n_cores, pc,
@@ -53,3 +57,4 @@ interface = gr.Interface(
 )
 
 interface.launch(share=True)
+
